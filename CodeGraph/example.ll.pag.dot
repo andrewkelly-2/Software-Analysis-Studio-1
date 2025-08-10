@@ -1,0 +1,38 @@
+digraph "SVFIR" {
+	label="SVFIR";
+
+	Node0xaaaac3098c00 [shape=record,shape=box,label="{ConstNullPtrValVar ID: 0\n ptr null \{ constant data \}}"];
+	Node0xaaaac3098c00 -> Node0xaaaac3079860[color=black];
+	Node0xaaaac3098c00 -> Node0xaaaac30e5e10[color=grey];
+	Node0xaaaac3098c00 -> Node0xaaaac30b3060[color=grey];
+	Node0xaaaac3079860 [shape=record,shape=diamond,label="{DummyValVar ID: 1}"];
+	Node0xaaaac308a0d0 [shape=record,shape=box3d,label="{DummyObjVar ID: 3}"];
+	Node0xaaaac308bb00 [shape=record,shape=box,label="{[source] FunValVar ID: 4\nsource}"];
+	Node0xaaaac30b2050 [shape=record,shape=box3d,label="{[source] FunObjVar ID: 5 (base object)\nsource}"];
+	Node0xaaaac30b2050 -> Node0xaaaac308bb00[color=green];
+	Node0xaaaac30e84f0 [shape=record,shape=box,label="{[source] ArgValVar ID: 7\n ptr %s \{ 0th arg source  \}}"];
+	Node0xaaaac308c070 [shape=record,shape=box,label="{[sink] FunValVar ID: 9\nsink}"];
+	Node0xaaaac30a5970 [shape=record,shape=box3d,label="{[sink] FunObjVar ID: 10 (base object)\nsink}"];
+	Node0xaaaac30a5970 -> Node0xaaaac308c070[color=green];
+	Node0xaaaac3093c40 [shape=record,shape=box,label="{[main] FunValVar ID: 14\nmain}"];
+	Node0xaaaac30ce5b0 [shape=record,shape=box3d,label="{[main] FunObjVar ID: 15 (base object)\nmain}"];
+	Node0xaaaac30ce5b0 -> Node0xaaaac3093c40[color=green];
+	Node0xaaaac308a4a0 [shape=record,shape=box,label="{[main] RetValPN ID: 16 unique return node for function main}"];
+	Node0xaaaac3093a70 [shape=record,shape=box,label="{[main] ValVar ID: 17\n   %a = alloca i32, align 4 |{|<s2>CallICFGNode: }}"];
+	Node0xaaaac3093a70 -> Node0xaaaac308c410[color=red];
+	Node0xaaaac3093a70 -> Node0xaaaac308ac00[color=red];
+	Node0xaaaac3093a70:s2 -> Node0xaaaac30e84f0[color=black,style=dashed];
+	Node0xaaaac308afa0 [shape=record,shape=box3d,label="{[main] StackObjVar ID: 18\n   %a = alloca i32, align 4 }"];
+	Node0xaaaac308afa0 -> Node0xaaaac3093a70[color=green];
+	Node0xaaaac30e5e10 [shape=record,shape=box,label="{[main] ValVar ID: 21\n   br label %while.cond }"];
+	Node0xaaaac308c410 [shape=record,shape=box,label="{[main] ValVar ID: 23\n   %0 = load i32, ptr %a, align 4 }"];
+	Node0xaaaac308c410 -> Node0xaaaac308c240[color=grey];
+	Node0xaaaac308c240 [shape=record,shape=box,label="{[main] ValVar ID: 24\n   %cmp = icmp sle i32 %0, 1 }"];
+	Node0xaaaac308c240 -> Node0xaaaac30c7a50[color=grey];
+	Node0xaaaac30c7a50 [shape=record,shape=box,label="{[main] ValVar ID: 25\n   br i1 %cmp, label %while.body, label %while.end }"];
+	Node0xaaaac308ac00 [shape=record,shape=box,label="{[main] ValVar ID: 27\n   %1 = load i32, ptr %a, align 4 }"];
+	Node0xaaaac308ac00 -> Node0xaaaac3093500[color=grey];
+	Node0xaaaac3093500 [shape=record,shape=box,label="{[main] ValVar ID: 28\n   %inc = add nsw i32 %1, 1 }"];
+	Node0xaaaac3093500 -> Node0xaaaac3093a70[color=blue];
+	Node0xaaaac30b3060 [shape=record,shape=box,label="{[main] ValVar ID: 30\n   br label %while.cond, !llvm.loop !6 }"];
+}

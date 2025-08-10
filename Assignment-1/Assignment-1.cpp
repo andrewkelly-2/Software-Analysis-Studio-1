@@ -36,11 +36,59 @@ using namespace std;
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connecting two node IDs
 void GraphTraversal::printPath(std::vector<const Node *> &path)
 {
+    //Step 1: Start building our String
+    std::string pathStr = "START: "; 
+
+    //Step 2: Go through each node in the path
+    for (int i = 0; i < path.size(); ++i) {
+        
+        //Step 3 Add the node's ID number
+        pathStr += std::to_string(path[i]->getNodeID());
+
+        //Step 4 Add arrow
+        pathStr += "->";
+    }
     
+    // Step 5: Add "END" at the end
+    pathStr += "END";
+
+    // Step 6: Save this string to our collection
+    paths.insert(pathStr);
+
 };
 
 /// TODO: Implement your depth first search here to traverse each program path (once for any loop) from src to dst
 void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path, const Node *src, const Node *dst)
 {
-    
+    //Step 1: Mark this node as visited (so that we do not visit it again)
+    visited.insert(src);
+
+    //Step 2: Add this node to our current path
+    path.push_back(src);
+
+    //Step 3: Check if we have reached our destionation
+    if (src == dst){
+        //Step 4: We found a complete path! Print it!
+        printPath(path);
+    } 
+    else {
+        //Step 5: We are not at the destination yet, so explore neighbours
+        //Get all roads (edges) going out from this city (node)
+        std::set<const Edge *> edges = src->getOutEdges();
+
+        //Step 6: Look at each road (edge) going out from this city (node)
+        for (const Edge *edge : edges) {
+            //Step 7: Get the destination city (node) of this road (edge)
+            const Node *neighbour = edge->getDst();
+
+            //Step 8: Only go to this neighbour if we have not visited it yet
+            if(visited.find(neighbour) == visited.end()) {
+                //Step 9: Go to this neighbour
+                DFS(visited, path, neighbour, dst);
+            }
+        }   
+    }
+    //Step 10: Backtrack, remove this node so other paths can use it
+    visited.erase(src);
+    path.pop_back();
 }
