@@ -36,21 +36,33 @@ using namespace std;
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connecting two node IDs
 void GraphTraversal::printPath(std::vector<const Node *> &path)
 {
+    //Step 0: Handle null pointer case
+    if (path.empty()) {
+        return; // No path to print
+    }
+
     //Step 1: Start building our String
     std::string pathStr = "START: "; 
 
     //Step 2: Go through each node in the path
     for (int i = 0; i < path.size(); ++i) {
+
+        // Check for null node pointer
+        if (!path[i]) {
+            return; // Skip this path if any node is null
+        }
         
         //Step 3 Add the node's ID number
         pathStr += std::to_string(path[i]->getNodeID());
 
-        //Step 4 Add arrow
-        pathStr += "->";
+        //Step 4: Add arrow only if this is not the last node
+        if (i < path.size() - 1) {
+            pathStr += "->";
+        }
     }
     
     // Step 5: Add "END" at the end
-    pathStr += "END";
+    pathStr += "->END";
 
     // Step 6: Save this string to our collection
     paths.insert(pathStr);
@@ -60,6 +72,11 @@ void GraphTraversal::printPath(std::vector<const Node *> &path)
 /// TODO: Implement your depth first search here to traverse each program path (once for any loop) from src to dst
 void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path, const Node *src, const Node *dst)
 {
+    // Add null pointer check
+    if (!src || !dst) {
+        return;
+    }
+
     //Step 1: Mark this node as visited (so that we do not visit it again)
     visited.insert(src);
 
@@ -78,8 +95,15 @@ void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path,
 
         //Step 6: Look at each road (edge) going out from this city (node)
         for (const Edge *edge : edges) {
+
+            // Check for null edge
+            if (!edge) continue;
+
             //Step 7: Get the destination city (node) of this road (edge)
             const Node *neighbour = edge->getDst();
+
+            // Check for null neighbour
+            if (!neighbour) continue;
 
             //Step 8: Only go to this neighbour if we have not visited it yet
             if(visited.find(neighbour) == visited.end()) {
