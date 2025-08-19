@@ -1,0 +1,18 @@
+digraph "SVFIR" {
+	label="SVFIR";
+
+	Node0xaaaadb860230 [shape=record,shape=box,label="{ConstNullPtrValVar ID: 0\n ptr null \{ constant data \}}"];
+	Node0xaaaadb860230 -> Node0xaaaadb81b530[color=black];
+	Node0xaaaadb81b530 [shape=record,shape=diamond,label="{DummyValVar ID: 1}"];
+	Node0xaaaadb80e000 [shape=record,shape=box3d,label="{DummyObjVar ID: 3}"];
+	Node0xaaaadb83cd80 [shape=record,shape=box,label="{[main] FunValVar ID: 4\nmain}"];
+	Node0xaaaadb836180 [shape=record,shape=box3d,label="{[main] FunObjVar ID: 5 (base object)\nmain}"];
+	Node0xaaaadb836180 -> Node0xaaaadb83cd80[color=green];
+	Node0xaaaadb866980 [shape=record,shape=box,label="{[main] RetValPN ID: 6 unique return node for function main}"];
+	Node0xaaaadb860400 [shape=record,shape=box,label="{[source] FunValVar ID: 8\nsource}"];
+	Node0xaaaadb852620 [shape=record,shape=box3d,label="{[source] FunObjVar ID: 9 (base object)\nsource}"];
+	Node0xaaaadb852620 -> Node0xaaaadb860400[color=green];
+	Node0xaaaadb7ffe40 [shape=record,shape=box,label="{[sink] FunValVar ID: 11\nsink}"];
+	Node0xaaaadb852a30 [shape=record,shape=box3d,label="{[sink] FunObjVar ID: 12 (base object)\nsink}"];
+	Node0xaaaadb852a30 -> Node0xaaaadb7ffe40[color=green];
+}
