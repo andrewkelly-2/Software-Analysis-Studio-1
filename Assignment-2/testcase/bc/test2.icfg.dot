@@ -1,0 +1,27 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0xaaab035f5770 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \nConstNullPtrValVar ID: 0\n ptr null \{ constant data \}\nAddrStmt: [Var16 \<-- Var3]  \nConstIntValVar ID: 16\n i32 0 \{ constant data \}\nAddrStmt: [Var4 \<-- Var5]  \nFunValVar ID: 4\nmain\nAddrStmt: [Var8 \<-- Var9]  \nFunValVar ID: 8\nsource\nAddrStmt: [Var12 \<-- Var13]  \nFunValVar ID: 12\nsink}"];
+	Node0xaaab035f5770 -> Node0xaaab03623680[style=solid];
+	Node0xaaab03623680 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: main\}}"];
+	Node0xaaab03623680 -> Node0xaaab035e0dd0[style=solid];
+	Node0xaaab035d9940 [shape=record,color=green,label="{FunExitICFGNode2 \{fun: main\}\nPhiStmt: [Var6 \<-- ([Var16, ICFGNode11],)]  \nValVar ID: 15\n   ret i32 0 }"];
+	Node0xaaab035e0dd0 [shape=record,color=red,label="{CallICFGNode3 \{fun: main\}\n   %call = call i32 (...) @source() CallICFGNode: }"];
+	Node0xaaab035e0dd0 -> Node0xaaab0363d9a0[style=solid];
+	Node0xaaab0363d9a0 [shape=record,color=blue,label="{RetICFGNode4 \{fun: main\}\n   %call = call i32 (...) @source() RetICFGNode: }"];
+	Node0xaaab0363d9a0 -> Node0xaaab036383a0[style=solid];
+	Node0xaaab036383a0 [shape=record,color=red,label="{CallICFGNode5 \{fun: main\}\n   %call1 = call i32 (...) @source() CallICFGNode: }"];
+	Node0xaaab036383a0 -> Node0xaaab0363d460[style=solid];
+	Node0xaaab0363d460 [shape=record,color=blue,label="{RetICFGNode6 \{fun: main\}\n   %call1 = call i32 (...) @source() RetICFGNode: }"];
+	Node0xaaab0363d460 -> Node0xaaab035fc920[style=solid];
+	Node0xaaab035fc920 [shape=record,color=red,label="{CallICFGNode7 \{fun: main\}\n   call void @sink(i32 noundef %call) CallICFGNode: }"];
+	Node0xaaab035fc920 -> Node0xaaab03606bb0[style=solid];
+	Node0xaaab03606bb0 [shape=record,color=blue,label="{RetICFGNode8 \{fun: main\}\n   call void @sink(i32 noundef %call) RetICFGNode: }"];
+	Node0xaaab03606bb0 -> Node0xaaab035e9cb0[style=solid];
+	Node0xaaab035e9cb0 [shape=record,color=red,label="{CallICFGNode9 \{fun: main\}\n   call void @sink(i32 noundef %call1) CallICFGNode: }"];
+	Node0xaaab035e9cb0 -> Node0xaaab035df770[style=solid];
+	Node0xaaab035df770 [shape=record,color=blue,label="{RetICFGNode10 \{fun: main\}\n   call void @sink(i32 noundef %call1) RetICFGNode: }"];
+	Node0xaaab035df770 -> Node0xaaab0362e740[style=solid];
+	Node0xaaab0362e740 [shape=record,color=black,label="{IntraICFGNode11 \{fun: main\}\n   ret i32 0 }"];
+	Node0xaaab0362e740 -> Node0xaaab035d9940[style=solid];
+}
